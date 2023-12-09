@@ -68,20 +68,10 @@ const FullConversationController: FC<FullConversationControllerProps> = ({
 };
 
 interface ListMessagesProps {
-  topic: string;
+  conversation?: CachedConversation;
 }
-export const ListMessages: FC<ListMessagesProps> = ({ topic }) => {
-  const { getCachedByTopic } = useConversation();
-  const [conversation, setConversation] = useState<any>();
-
-  useEffect(() => {
-    const fetchConversation = async () => {
-      const conversation = await getCachedByTopic(topic);
-      setConversation(conversation);
-    };
-
-    fetchConversation();
-  }, [getCachedByTopic, topic]);
+export const ListMessages: FC<ListMessagesProps> = ({ conversation }) => {
+  if (!conversation) return <></>;
 
   return (
     <>
