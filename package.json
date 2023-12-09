@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@airstack/airstack-react": "^0.6.1",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@xmtp/react-sdk": "^3.0.0",
     "@xmtp/xmtp-js": "^11.2.3",
