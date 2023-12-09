@@ -8,12 +8,13 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import truncateAddress from "@/app/utils/truncate";
 import clsx from "clsx";
+import { Address, useEnsName } from "wagmi";
 
 dayjs.extend(relativeTime);
 
 interface ConversationCardProps {
   conversation: CachedConversation<ContentTypeMetadata>;
-  setSelectedConversation: (topic: string) => void;
+  setSelectedConversation: (conversation: CachedConversation) => void;
   isSelected?: boolean;
 }
 
@@ -23,6 +24,9 @@ const ConversationCard: FC<ConversationCardProps> = ({
   isSelected = false,
 }) => {
   const lastMessage = useLastMessage(conversation.topic);
+  const { data: ensName } = useEnsName({
+    address: conversation.peerAddress as Address,
+  });
 
   return (
     <>
@@ -31,11 +35,11 @@ const ConversationCard: FC<ConversationCardProps> = ({
           "w-full flex flex-col space-y-1 border-y border-zinc-200 py-3 px-2 hover:bg-zinc-50 hover:cursor-pointer transition-all",
           isSelected && "bg-zinc-100"
         )}
-        onClick={() => setSelectedConversation(conversation.topic)}
+        onClick={() => setSelectedConversation(conversation)}
       >
         <div className="flex items-center justify-between text-sm">
           <p className="font-medium">
-            {truncateAddress(conversation.peerAddress)}
+            {ensName || truncateAddress(conversation.peerAddress)}
           </p>
           <span className="text-xs text-zinc-500">
             {dayjs(conversation.updatedAt).fromNow()}
@@ -49,8 +53,8 @@ const ConversationCard: FC<ConversationCardProps> = ({
 
 interface ListConversationsProps {
   conversations: CachedConversation<ContentTypeMetadata>[];
-  selectedConversation: string;
-  setSelectedConversation: (topic: string) => void;
+  selectedConversation?: CachedConversation;
+  setSelectedConversation: (conversation: CachedConversation) => void;
   isLoading: boolean;
 }
 
@@ -67,7 +71,9 @@ export const ListConversations: FC<ListConversationsProps> = ({
           <ConversationCard
             key={c.id}
             conversation={c}
-            isSelected={selectedConversation === c.topic}
+            isSelected={
+              selectedConversation && selectedConversation.topic === c.topic
+            }
             setSelectedConversation={setSelectedConversation}
           />
         ))}
