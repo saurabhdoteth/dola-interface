@@ -1,0 +1,2 @@
+export const DOLA_COMMUNICATE = "0x59f286Af6ad55b06c220c3162496149a05162812"; // base goerli
+export const USDC = "0xcfFC3a8893cEf48F4B6F9F7f0b7627Cbd9301852";
