@@ -7,9 +7,9 @@ const Wallet = () => {
         return (
           <button
             onClick={show}
-            className="rounded-xl p-4 bg-violet-700 text-white w-full"
+            className="rounded-xl p-4 bg-white text-violet-600 font-medium w-full"
           >
-            {isConnected ? ensName ?? truncatedAddress : "Create Your Link"}
+            {isConnected ? ensName ?? truncatedAddress : "Show My Profile"}
           </button>
         );
       }}
