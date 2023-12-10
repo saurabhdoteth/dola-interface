@@ -66,7 +66,8 @@ export const ListConversations: FC<ListConversationsProps> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col w-full">
+      <div className="sm:w-full flex flex-col h-full border-x outline-none overflow-y-auto relative">
+        <div className="w-full h-full absolute top-0">
         {conversations.map((c) => (
           <ConversationCard
             key={c.id}
@@ -77,6 +78,7 @@ export const ListConversations: FC<ListConversationsProps> = ({
             setSelectedConversation={setSelectedConversation}
           />
         ))}
+        </div>
       </div>
     </>
   );
