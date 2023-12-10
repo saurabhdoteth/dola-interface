@@ -11,7 +11,7 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 import { FaXTwitter } from "react-icons/fa6";
-import { IoSearch } from "react-icons/io5";
+import { IoMdMail } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import truncateAddress from "../utils/truncate";
 import Link from "next/link";
@@ -37,7 +37,7 @@ const ConnectWallet = () => {
           <button
             onClick={show}
             className={clsx(
-              "flex items-center justify-center space-x-2 flex-1 transition-all font-medium text-sm rounded-lg py-3",
+              "flex items-center justify-center space-x-2 w-full max-w-md transition-all font-medium text-sm rounded-lg py-3",
               "bg-violet-600/10 text-violet-600 hover:bg-violet-600 hover:text-white"
             )}
           >
@@ -71,12 +71,6 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const router = useRouter();
   const { disconnect } = useDisconnect();
-
-  useEffect(() => {
-    if (isOwner) {
-      router.push(`/${address}/inbox`);
-    }
-  }, [address, isOwner, router]);
 
   useInitXmtpClient();
 
@@ -214,9 +208,23 @@ export default function Page({ params }: { params: { id: string } }) {
               )}
             </div>
           </div>
-          <div className="relative w-full flex flex-col mt-8">
+          <div className="relative w-full flex flex-col justify-center items-center mt-8">
             {!isConnected ? (
               <ConnectWallet />
+            ) : isOwner ? (
+              <div className="flex justify-center pb-4">
+                <Link href={`/${address}/inbox`} className="max-w-md w-full">
+                  <button
+                    className={clsx(
+                      "flex items-center justify-center space-x-2 max-w-md w-full transition-all font-medium text-sm rounded-lg p-3 outline-none",
+                      "bg-violet-600/10 text-violet-600 hover:bg-violet-600 hover:text-white"
+                    )}
+                  >
+                    {<IoMdMail className="w-6 h-6" />}
+                    <span>Go To Inbox</span>
+                  </button>
+                </Link>
+              </div>
             ) : (
               <div className="w-full flex flex-col space-y-4">
                 <textarea
