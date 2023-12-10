@@ -67,10 +67,10 @@ const useEns = (ens?: string) => {
 
   return {
     data: {
-      name: data?.Domain.name,
-      resolvedAddress: data?.Domain.resolvedAddress,
-      twitter: data?.Socials.Social[0].twitterUserName,
-      avatar: data?.Socials.Social[0].profileImageContentValue.image?.medium,
+      name: data?.Domain?.name,
+      resolvedAddress: data?.Domain?.resolvedAddress,
+      twitter: data?.Socials?.Social[0]?.twitterUserName,
+      avatar: data?.Socials?.Social[0]?.profileImageContentValue?.image?.medium,
     },
     isLoading: loading,
     error,
