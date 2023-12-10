@@ -19,13 +19,13 @@ export default function Home() {
   }, [address, ensName, isConnected, router]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="font-medium text-zinc-900 text-xl">LinkMe</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 text-white bg-gradient-to-br from from-violet-900 to-violet-300">
+      <h1 className="font-medium text-xl">Dola.gg</h1>
       <div className="mt-8 space-y-3 text-center">
-        <p className="text-6xl text-zinc-900 font-bold">
-          Rich and Beautiful Web3 Bio
+        <p className="text-6xl font-bold">
+          Take expert advice • Earn by replying
         </p>
-        <p className="text-lg text-zinc-500">
+        <p className="text-lg text-zinc-200">
           Showcase yourself and earn by replying to your audience.
         </p>
       </div>
