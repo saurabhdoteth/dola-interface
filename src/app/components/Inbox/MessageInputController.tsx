@@ -57,11 +57,14 @@ const MessageInputController: FC<MessageInputControllerProps> = ({
   const showEndConversation = useMemo(
     () =>
       conversationResponse &&
+      address &&
       conversationResponse[5] === 0 &&
       conversationResponse[4] > BigInt(0) &&
-      conversation?.peerAddress === address,
-    [address, conversation?.peerAddress, conversationResponse]
+      conversationResponse[3].toLowerCase() === address.toLowerCase(),
+    [address, conversationResponse]
   );
+
+  console.log({ conversationResponse, address });
 
   const {
     writeAsync: closeConversation,
