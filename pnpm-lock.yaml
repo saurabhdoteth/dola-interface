@@ -30,6 +30,7 @@ specifiers:
   typescript: ^5
   viem: ^1.19.11
   wagmi: ^1.4.8
+  zustand: ^4.4.7
 
 dependencies:
   '@airstack/airstack-react': 0.6.1_biqbaboplfbrettd7655fr4n2y
@@ -52,6 +53,7 @@ dependencies:
   siwe: 2.1.4
   viem: 1.19.11_typescript@5.3.2
   wagmi: 1.4.8_qw43swqojrmclmuklv3jztatxy
+  zustand: 4.4.7_qjur23isozgejic6xjvb76mkmm
 
 devDependencies:
   '@types/node': 20.10.3

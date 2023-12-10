@@ -28,7 +28,8 @@
     "react-virtuoso": "^4.6.2",
     "siwe": "^2.1.4",
     "viem": "^1.19.11",
-    "wagmi": "^1.4.8"
+    "wagmi": "^1.4.8",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/node": "^20",
