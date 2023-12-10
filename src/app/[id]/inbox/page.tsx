@@ -3,6 +3,7 @@ import { ListConversations } from "@/app/components/Inbox/ListConversations";
 import { ListMessages } from "@/app/components/Inbox/ListMessages";
 import MessageInputController from "@/app/components/Inbox/MessageInputController";
 import useInitXmtpClient from "@/app/hooks/useInitXmtpClient";
+import { useXmtpStore } from "@/app/store/useXmtpStore";
 import { CachedConversation, useConversations } from "@xmtp/react-sdk";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,14 +13,14 @@ import { FaArrowLeft } from "react-icons/fa6";
 export default function Inbox() {
   const { isLoading } = useInitXmtpClient();
   const { conversations } = useConversations();
-  const [selectedConversation, setSelectedConversation] =
-    useState<CachedConversation>();
+  const { selectedConversation, setSelectedConversation } = useXmtpStore();
 
   useEffect(() => {
+    if (selectedConversation) return;
     if (conversations && conversations.length) {
       setSelectedConversation(conversations[0]);
     }
-  }, [conversations]);
+  }, [conversations, selectedConversation, setSelectedConversation]);
 
   const router = useRouter();
 
